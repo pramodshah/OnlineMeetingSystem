@@ -1,0 +1,47 @@
+<%- include('./partials/headertwo') %>
+<link rel="stylesheet" href="./css/editmeeting.css"> 
+
+<div class="container" style="margin-top:5%!important;width:35% !important;">
+    <form action="/editmeeting" method="post">
+      <input type="hidden" name="id" value="<%= meeting._id %>">
+        <fieldset>
+          <legend>Update Your Meeting Details</legend>
+          <div class="form-group">
+            <label for="exampleInputTitle">Title</label>
+            <input type="text" class="form-control" id="title"  value="<%=meeting.title%>" placeholder="Enter title" name="title">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleSelect1">Meeting With</label>
+            <select class="form-control" id="selectuser" name="selectuser">
+              <option value="<%=meeting.meetingwith%>" selected><%=meeting.meetingwith%></option>
+                <% users.forEach(function(user){%>
+                    <option value="<%=user.name%>"><%=user.name %></option>
+                <%})%>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputDate">Meeting Date</label>
+            <input type="date" class="form-control" id="date"   name="date" value="<%=meeting.date%>">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleInputDate">Meeting Time</label>
+            <input type="time" class="form-control" id="Time"   name="time" value="<%=meeting.time%>">
+           
+          </div>
+          
+          
+          
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </fieldset>
+      </form>
+
+</div>
+
+
+
+
+
+

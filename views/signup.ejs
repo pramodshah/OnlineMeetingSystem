@@ -1,0 +1,27 @@
+<%- include('./partials/header') %>
+<link rel="stylesheet" href="./css/signup.css"> 
+<div class="container">
+  <%- include('./partials/messages') %>
+    <form action="/signup" method="post">
+        <fieldset>
+          <legend>Sign Up</legend>
+          <div class="form-group">
+            <label for="exampleInputName">Name</label>
+            <input type="text" class="form-control" id="name"  placeholder="Enter Name" name="name">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail">Email</label>
+            <input type="email" class="form-control" id="email"  placeholder="Enter email" name="email">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+          </div>
+          
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </fieldset>
+      </form>
+
+</div>

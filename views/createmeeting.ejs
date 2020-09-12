@@ -1,0 +1,47 @@
+<%- include('./partials/headertwo') %>
+<link rel="stylesheet" href="./css/createmeeting.css"> 
+
+<div class="container">
+    <%- include('./partials/messages') %>
+    <form action="/createmeeting" method="post">
+        <fieldset>
+          <legend>Create Your Meeting </legend>
+          <div class="form-group">
+            <label for="exampleInputTitle">Title</label>
+            <input type="text" class="form-control" id="title"  placeholder="Enter title" name="title">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleSelect1">Meeting With</label>
+            <select class="form-control" id="selectuser" name="selectuser">
+                <option value="default value" selected>Select User</option>
+                <% users.forEach(function(user){%>
+                    <option value="<%=user.name%>"><%=user.name %></option>
+                <%})%>
+            </select>
+          </div>
+
+          <div class="form-group"> 
+            <label for="exampleInputDate">Meeting Date</label>
+            <input type="date" class="form-control" id="date"   name="date">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleInputDate">Meeting Time</label>
+            <input type="time" class="form-control" id="Time"   name="time">
+           
+          </div>
+          
+          
+          
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </fieldset>
+      </form>
+
+</div>
+
+
+
+
+
+
