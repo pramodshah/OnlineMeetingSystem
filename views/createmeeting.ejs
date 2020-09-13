@@ -1,6 +1,7 @@
 <%- include('./partials/headertwo') %>
 <link rel="stylesheet" href="./css/createmeeting.css"> 
 
+
 <div class="container">
     <%- include('./partials/messages') %>
     <form action="/createmeeting" method="post">
@@ -23,7 +24,7 @@
 
           <div class="form-group"> 
             <label for="exampleInputDate">Meeting Date</label>
-            <input type="date" class="form-control" id="date"   name="date">
+            <input type="date" class="form-control" id="date"   name="date" placeholder="MM/DD/YYYY">
            
           </div>
           <div class="form-group">
@@ -39,6 +40,7 @@
       </form>
 
 </div>
+
 
 
 

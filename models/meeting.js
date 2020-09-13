@@ -20,8 +20,7 @@ var meetingSchema = new mongoose.Schema({
     createdBy:{
         type:ObjectId,
         ref:"User"
-    },
-    date: { type: Date, default: Date.now }
+    }
 });
 
 var Meeting = mongoose.model("Meeting",meetingSchema);

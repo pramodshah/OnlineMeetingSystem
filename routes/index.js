@@ -23,31 +23,40 @@ router.get('/createmeeting',requireLogin,(req,res)=>{
 });
 router.post('/createmeeting',requireLogin,(req,res)=>{
     const {title,selectuser,date,time} = req.body;
-    if(!title || !selectuser|| !date || !time){
-        req.flash('error_msg','Please fill all the fields.')
-        res.redirect('/createmeeting');
-    }
-    // User.find({name:selectuser}).
-    // then(user=>{
 
-    // }).catch(err=>{
-    //     console.log(err);
-    // })
-    req.user.password =undefined;
-    const meeting = new Meeting ({
-        title,
-        meetingwith:selectuser,
-        date,
-        time, 
-        createdBy:req.user
-    });
-    meeting.save().then(meeting=>{
-        req.flash('success_msg','You have successfully created your meeting.')
-        res.redirect('/meeting');
-    })
-    .catch(err=>{
+    if(!title || !selectuser|| !date || !time){
+        req.flash('error_msg','Please fill all the fields.');
+        return res.redirect('/createmeeting');
+    }
+
+    Meeting.findOne({meetingwith:selectuser,date:date}).then(meeting=>{
+        if(meeting){
+            req.flash('error_msg','On this date meeting is already fixed with the same user.')
+            return res.redirect('/createmeeting');
+        }else{
+
+            req.user.password =undefined;
+            const meeting = new Meeting ({
+                title,
+                meetingwith:selectuser,
+                date,
+                time, 
+                createdBy:req.user
+            });
+            meeting.save().then(meeting=>{
+                req.flash('success_msg','You have successfully created your meeting.')
+                res.redirect('/meeting');
+            })
+            .catch(err=>{
+                console.log(err);
+            }); 
+
+        }
+    }).catch(err=>{
         console.log(err);
     });
+
+    
     
 });
 
@@ -112,6 +121,16 @@ router.get('/delete/:id',(req,res)=>{
 
     });
     
+});
+
+
+
+router.get('/view/:id',(req,res)=>{
+    var id = req.params.id;
+    Meeting.findById(id,(err,meeting)=>{
+        if(err) throw err;
+        res.render('viewmeeting',{meeting:meeting});
+    });
 });
 
 module.exports = router;
