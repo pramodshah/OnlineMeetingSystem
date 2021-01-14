@@ -40,7 +40,7 @@ app.use(function(req,res,next){
 // database connection
 mongoose.connect(MONGOURI,{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
     if(!err){
-        console.log("MongoDB Connected...");
+        console.log("MongoDB Connected successfully");
     }else{
         console.log(err);
     }
